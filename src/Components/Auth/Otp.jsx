@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-// import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 // import {signIn} from '../../store/Actions/authActions';
+import { PutVotingKey } from '../../Store/Actions/VotingActions'
 import { Redirect } from 'react-router-dom'
 class OTP extends Component {
     state = {
@@ -13,6 +14,14 @@ class OTP extends Component {
     }
     handleOnSubmit = (e) => {
         e.preventDefault();
+        const otp = this.props.otp;
+        if (this.state.otp !== otp) {
+            this.props.AuthError()
+        }
+        else {
+            this.props.PutKey()
+            this.props.history.push('/verified')
+        }
         // 
         // this.props.signIn(this.state)
 
@@ -34,7 +43,7 @@ class OTP extends Component {
                         <label htmlFor="otp">OTP</label>
                         <input type="text" id="otp" onChange={this.handleOnChange} />
                     </div>
-                    
+
                     <div className="input-field">
                         <button className="btn z-depth-0 dark-blue darken-1">Verify</button>
                     </div>
@@ -44,4 +53,15 @@ class OTP extends Component {
         )
     }
 }
-export default OTP;
+const mapStateToProps = (state) => {
+    return {
+        otp: state.user.otp
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        AuthError: () => dispatch({ type: 'AuthError' }),
+        PutKey: (key) => dispatch({ type: 'PutVotingKey' })
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(OTP);

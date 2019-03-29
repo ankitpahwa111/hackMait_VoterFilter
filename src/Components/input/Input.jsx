@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-// import {connect} from 'react-redux';
-// import {signIn} from '../../store/Actions/authActions';
-import {Redirect} from 'react-router-dom'
+import { connect } from 'react-redux';
+import { PutVoter } from '../../Store/Actions/VotingActions';
+import { Redirect } from 'react-router-dom'
 class Input extends Component {
     state = {
         aadhaar: '',
@@ -14,6 +14,8 @@ class Input extends Component {
     }
     handleOnSubmit = (e) => {
         e.preventDefault();
+        this.props.PutVoter(this.state)
+        this.props.history.push('/verification')
         // 
         // this.props.signIn(this.state)
 
@@ -22,15 +24,15 @@ class Input extends Component {
         // this.props.history.push('/')
     }
     render() {
-        
-        
-       
-        
+
+
+
+
         return (
             <div className="container">
                 <form onSubmit={this.handleOnSubmit} className="white">
                     <h5 className="dark-grey text-darken-3">Enter Voter's Details</h5>
-                    
+
                     <div className="input-field">
                         <label htmlFor="aadhaar">AADHAAR</label>
                         <input type="text" id="aadhaar" onChange={this.handleOnChange} />
@@ -42,10 +44,15 @@ class Input extends Component {
                     <div className="input-field">
                         <button className="btn z-depth-0 dark-blue darken-1">Verify</button>
                     </div>
-                    
+
                 </form>
             </div>
         )
     }
 }
-export default Input;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        PutVoter: (voter) => dispatch(PutVoter(voter))
+    }
+}
+export default connect(null , mapDispatchToProps)(Input);
