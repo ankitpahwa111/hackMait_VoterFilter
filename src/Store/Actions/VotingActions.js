@@ -1,29 +1,34 @@
 import axios from 'axios'
 export const PutVoter = (voter) => {
     return (dispatch, getState) => {
-        axios.post('',{
-            user : {
-                aadhaar : voter.aadhaar,
-                voterid : voter.VoterId
-            }
-        }).then((voter) => {
-            dispatch({ type: 'PutUser', user: voter })
-        }).catch((err) => {
-            dispatch({ type: 'AuthError' })
-        })
+        const dummyVoter = {
+            aadhaar : 'voter.aadhaar',
+            voterid : 'voter.VoterId'
+        }
+        // axios.post('',{
+        //     user : {
+        //         aadhaar : voter.aadhaar,
+        //         voterid : voter.VoterId
+        //     }
+        // }).then((dummyVoter) => {
+            //dispatch({ type: 'PutUser', dummyVoter })
+        // }).catch((err) => {
+        //     dispatch({ type: 'AuthError' })
+        // })
 
     }
 }
 export const PutVotingKey = () => {
     return (dispatch, getState) => {
         const { user } = getState();
+        const dummyKey = '123567899'
         axios.post('',{
             user : {
                 aadhaar :  user.aadhaar,
                 voterid :  user.voterId
             }
-        }).then((key) => {
-            dispatch({ type: 'PutVotingKey', key: key })
+        }).then((dummyKey) => {
+            dispatch({ type: 'PutVotingKey', key: dummyKey })
         })
     }
 }

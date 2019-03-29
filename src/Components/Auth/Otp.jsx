@@ -15,7 +15,8 @@ class OTP extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault();
         const otp = this.props.otp;
-        if (this.state.otp !== otp) {
+        console.log(otp)
+        if (this.state.otp != otp) {
             this.props.AuthError()
         }
         else {
@@ -40,8 +41,8 @@ class OTP extends Component {
                     <h5 className="dark-grey text-darken-3">Enter OTP</h5>
 
                     <div className="input-field">
-                        <label htmlFor="otp">OTP</label>
-                        <input type="text" id="otp" onChange={this.handleOnChange} />
+                        <label htmlFor="otp"></label>
+                        <input type="text" id="otp" onChange={this.handleOnChange} placeholder='OTP' />
                     </div>
 
                     <div className="input-field">
@@ -54,6 +55,7 @@ class OTP extends Component {
     }
 }
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
         otp: state.user.otp
     }

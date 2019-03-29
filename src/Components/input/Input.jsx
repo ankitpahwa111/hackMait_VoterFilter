@@ -13,8 +13,9 @@ class Input extends Component {
         })
     }
     handleOnSubmit = (e) => {
+        // console.log(this.props)
         e.preventDefault();
-        this.props.PutVoter(this.state)
+        //this.props.PutVoter(this.state)
         this.props.history.push('/verification')
         // 
         // this.props.signIn(this.state)
@@ -34,12 +35,12 @@ class Input extends Component {
                     <h5 className="dark-grey text-darken-3">Enter Voter's Details</h5>
 
                     <div className="input-field">
-                        <label htmlFor="aadhaar">AADHAAR</label>
-                        <input type="text" id="aadhaar" onChange={this.handleOnChange} />
+                        <label htmlFor="aadhaar"></label>
+                        <input placeholder="Aadhaar" type="text" id="aadhaar" onChange={this.handleOnChange} />
                     </div>
                     <div className="input-field">
-                        <label htmlFor="VoterId">VOTER ID</label>
-                        <input type="text" id="VoterId" onChange={this.handleOnChange} />
+                        <label htmlFor="VoterId"></label>
+                        <input placeholder="VOTER ID" type="text" id="VoterId" onChange={this.handleOnChange} />
                     </div>
                     <div className="input-field">
                         <button className="btn z-depth-0 dark-blue darken-1">Verify</button>
